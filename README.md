@@ -19,6 +19,14 @@
 
 ---
 
+### Important Links
+
+- [Setup Guide](./readme/SETUP.md)
+- [API Documentation](./readme/API.md)
+- [Database Schema](./readme/SCHEMA.md)
+
+---
+
 ### Features
 
 - [ ] Create, Read, Update and Delete Logs
@@ -30,8 +38,8 @@
 
 ---
 
-### Important Links
+### Best Practices Followed
 
-- [API Documentation](./readme/API.md)
-- [Database Schema](./readme/SCHEMA.md)
-- [Setup Guide](./readme/SETUP.md)
+- [ ] Conventional Commit Messages
+- [ ] Linting and Formatting Support
+- [ ] Test-Driven Approach
