@@ -2,25 +2,21 @@
 import type { GetServerSideProps, NextPage } from 'next'
 
 // named imports
-import { ListingTable } from '../../components'
+import { Listing } from '../../components'
 
-interface ListingProps {
+interface ListingPageProps {
   logs: Log[]
 }
 
-const Listing: NextPage<ListingProps> = ({ logs }) => {
+const ListingPage: NextPage<ListingPageProps> = ({ logs }) => {
   return (
     <div className='max-w-screen-xl mx-auto'>
-      <h2 className='text-2xl text-center'>Log Listing</h2>
-
-      <ListingTable
-        logs={logs}
-      />
+      <Listing logs={logs} />
     </div>
   )
 }
 
-export default Listing
+export default ListingPage
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const logs: Log[] = [
@@ -42,7 +38,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       id: '3',
       timestamp: 1672531200000,
       severity: 5,
-      source: 'Server',
+      source: 'Client',
       message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
     },
     {
@@ -56,7 +52,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
       id: '5',
       timestamp: 1672531200000,
       severity: 3,
-      source: 'Server',
+      source: 'Service X',
       message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
     },
     {
@@ -65,7 +61,49 @@ export const getServerSideProps: GetServerSideProps = async () => {
       severity: 6,
       source: 'Server',
       message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
-    }
+    },
+    {
+      id: '7',
+      timestamp: 1672531200000,
+      severity: 6,
+      source: 'DB Instace Y',
+      message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+    },
+    {
+      id: '8',
+      timestamp: 1672531200000,
+      severity: 4,
+      source: 'Server',
+      message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+    },
+    {
+      id: '9',
+      timestamp: 1672531200000,
+      severity: 3,
+      source: 'Service X',
+      message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+    },
+    {
+      id: '10',
+      timestamp: 1672531200000,
+      severity: 6,
+      source: 'Server',
+      message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+    },
+    {
+      id: '11',
+      timestamp: 1672531200000,
+      severity: 6,
+      source: 'DB Instace Y',
+      message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+    },
+    {
+      id: '12',
+      timestamp: 1672531200000,
+      severity: 4,
+      source: 'Server',
+      message: 'This is a log message lorem ipsum dolor sit amet lorem ipsum dolor sit ametlorem ipsum dolor sit amet',
+    },
   ]
 
   return {

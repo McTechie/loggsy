@@ -4,4 +4,4 @@ export { default as SideBar } from './global/SideBar'
 export { default as Footer } from './global/Footer'
 
 // listing view components
-export { default as ListingTable } from './listing/ListingTable'
+export { default as Listing } from './listing/Listing'

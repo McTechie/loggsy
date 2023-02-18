@@ -11,3 +11,10 @@ type Log = {
   source: string;
   message: string;
 }
+
+type FilterFormData = {
+  fromDate: string;
+  toDate: string;
+  severity: number;
+  source: string;
+}
