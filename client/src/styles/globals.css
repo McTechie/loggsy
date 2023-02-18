@@ -41,7 +41,7 @@
   }
 
   .table-body-row {
-    @apply bg-slate-200 text-gray-500 even:bg-emerald-200 dark:even:bg-indigo-200;
+    @apply bg-slate-200 text-gray-500 even:bg-emerald-200 dark:even:bg-indigo-200 hover:text-white hover:bg-gray-400 dark:hover:bg-gray-400 cursor-pointer transition-all duration-150 ease-in-out;
   }
 
   .table-body-row td {

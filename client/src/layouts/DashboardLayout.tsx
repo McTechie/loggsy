@@ -3,7 +3,7 @@ import { FC } from 'react'
 
 // named imports
 import { Lato } from '@next/font/google'
-import { AppBar, Footer, SideBar } from '../components'
+import { AppBar, SideBar } from '../components'
 
 // default imports
 import Head from 'next/head'
@@ -43,8 +43,6 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
           <main className='px-4 py-6'>
             {children}
           </main>
-
-          <Footer />
         </div>
       </div>
     </div>

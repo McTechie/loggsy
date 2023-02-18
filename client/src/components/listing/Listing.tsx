@@ -2,11 +2,14 @@
 import { FC, MouseEvent } from 'react'
 
 // named imports
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { ArrowDownCircleIcon, ArrowUpCircleIcon, ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/24/solid'
+import { Toaster } from 'react-hot-toast'
+import { ArrowDownCircleIcon, ArrowUpCircleIcon, ChevronLeftIcon, ChevronRightIcon, InformationCircleIcon } from '@heroicons/react/24/solid'
 
 // default imports
+import toast from 'react-hot-toast'
 import SeverityBadge from './SeverityBadge'
 
 interface ListingProps {
@@ -14,6 +17,8 @@ interface ListingProps {
 }
 
 const Listing: FC<ListingProps> = ({ logs }) => {
+  const router = useRouter() // next router
+
   const { register, handleSubmit } = useForm<FilterFormData>() // react-hook-form
 
   // pagination logic states
@@ -85,6 +90,13 @@ const Listing: FC<ListingProps> = ({ logs }) => {
 
   // filter handler function
   const filterData: SubmitHandler<FilterFormData> = (data) => {
+    const notification = toast.loading('Filtering logs...', {
+      style: {
+        background: '#334155',
+        color: '#d1d5db',
+      },
+    })
+
     const { fromDate, toDate, severity, source } = data
 
     // Filtering Logic
@@ -127,10 +139,51 @@ const Listing: FC<ListingProps> = ({ logs }) => {
     // reset sorting
     setIsSortedBySeverity(false)
     setIsSortedBySource(false)
+
+    toast.dismiss(notification)
+    toast.success('Logs filtered successfully!', {
+      style: {
+        background: '#334155',
+        color: '#d1d5db',
+      },
+    })
   }
+
+  useEffect(() => {
+    const infoToast = toast(() => (
+      <div>
+        <p className='font-semibold border-b-2 pb-1 flex items-center space-x-1'>
+          <InformationCircleIcon className='inline-block w-5 h-5' />
+          <span>Loggsy Listings</span>
+        </p>
+        <ol className='text-xs pt-2 pl-1 list-decimal'>
+          <li><b>Filter logs</b> by severity, source, and date range!</li>
+          <li><b>Sort logs</b> by severity and source!</li>
+          <li>View logs in a <b>paginated format</b>!</li>
+          <li>Click on a log to view its <b>details</b>!</li>
+        </ol>
+      </div>
+    ), {
+      duration: 8000,
+      style: {
+        background: '#4b5563',
+        color: '#d1d5db',
+      },
+    })
+
+    return () => {
+      // removing toast message on unmount
+      toast.dismiss(infoToast)
+    }
+  }, [])
 
   return (
     <div className='w-full'>
+      <Toaster
+        position='bottom-right'
+        reverseOrder={false}
+      />
+
       {/* Filter Form */}
       <section>
         <form
@@ -272,6 +325,7 @@ const Listing: FC<ListingProps> = ({ logs }) => {
                 <tr
                   key={log.id}
                   className='table-body-row'
+                  onClick={() => router.push(`/listing/${log.id}`)}
                 >
                   <td>
                     {new Date(log.timestamp).toUTCString()}
