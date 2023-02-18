@@ -2,21 +2,19 @@
 import type { AppProps } from 'next/app'
 
 // named imports
-import { Lato } from '@next/font/google'
+import { Provider } from 'react-redux'
+import { store } from '../redux/store'
+import { DashboardLayout } from '../layouts'
 
 // style imports
 import '../styles/globals.css'
 
-const lato = Lato({
-  subsets: ['latin'],  
-  weight: '400',
-  variable: '--font-lato'
-})
-
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <div className={`${lato.variable} font-sans`}>
-      <Component {...pageProps} />
-    </div>
+    <Provider store={store}>
+      <DashboardLayout>
+        <Component {...pageProps} />
+      </DashboardLayout>
+    </Provider>
   )
 }
