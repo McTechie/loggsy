@@ -6,7 +6,7 @@ type NavLink = {
 
 type Log = {
   id: string;
-  timestamp: string;
+  timestamp: number;
   severity: 1 | 2 | 3 | 4 | 5 | 6;
   source: string;
   message: string;

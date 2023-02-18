@@ -1,5 +1,5 @@
-// type imports
-import { FC } from 'react'
+// type & named imports
+import { FC, useState } from 'react'
 
 // named imports
 import { SubmitHandler, useForm } from 'react-hook-form'
@@ -12,8 +12,8 @@ interface ListingTableProps {
 }
 
 interface FormData {
-  dateFrom: string,
-  dateTo: string,
+  fromDate: string,
+  toDate: string,
   severity: number,
   source: string
 }
@@ -21,8 +21,44 @@ interface FormData {
 const ListingTable: FC<ListingTableProps> = ({ logs }) => {
   const { register, handleSubmit } = useForm<FormData>()
 
+  const [filteredLogs, setFilteredLogs] = useState<Log[]>(logs)
+
   const submitData: SubmitHandler<FormData> = (data) => {
-    console.log(data)
+    const { fromDate, toDate, severity, source } = data
+
+    const newlyFilteredLogs = logs.filter(log => {
+      let flag = true
+
+      // Filtering Cases
+      // ----------------
+      // Case #1:
+      //   If the source is not empty AND
+      //   the input source does not include the log source AND
+      //   the log source does not include the input source, then set the flag to FALSE
+      // Case #2:
+      //   If the severity is not 0 AND
+      //   the input severity does not match the log severity, then set the flag to FALSE
+      // Case #3:
+      //   If the from date is not empty AND
+      //   the log timestamp is less than the from date, then set the flag to FALSE
+      // Case #4:
+      //   If the to date is not empty AND
+      //   the log timestamp is greater than the to date, then set the flag to FALSE
+
+      if (source && !log.source.toLowerCase().includes(source.toLowerCase()) && !source.toLowerCase().includes(log.source.toLowerCase())) {
+        flag = false
+      } else if (severity !== 0 && log.severity !== severity) {
+        flag = false
+      } else if (fromDate && log.timestamp < new Date(fromDate).getTime()) {
+        flag = false
+      } else if (toDate && log.timestamp > new Date(toDate).getTime()) {
+        flag = false
+      }
+
+      return flag
+    })
+
+    setFilteredLogs(newlyFilteredLogs)
   }
 
   return (
@@ -34,32 +70,32 @@ const ListingTable: FC<ListingTableProps> = ({ logs }) => {
       >
         <div className='ml-2 space-x-2 col-span-2'>
           <label
-            htmlFor='dateFrom'
+            htmlFor='fromDate'
             className='form-label'
           >
             From:
           </label>
           <input
             type='date'
-            id='dateFrom'
+            id='fromDate'
             placeholder='Date From'
-            {...register('dateFrom')}
+            {...register('fromDate')}
             className='form-input'
           />
         </div>
 
         <div className='space-x-2 col-span-2'>
           <label
-            htmlFor='dateTo'
+            htmlFor='toDate'
             className='form-label'
           >
             To:
           </label>
           <input
             type='date'
-            id='dateTo'
+            id='toDate'
             placeholder='Date To'
-            {...register('dateTo')}
+            {...register('toDate')}
             className='form-input'
           />
         </div>
@@ -73,9 +109,10 @@ const ListingTable: FC<ListingTableProps> = ({ logs }) => {
           </label>
           <select
             id='severity'
-            {...register('severity')}
+            {...register('severity', { valueAsNumber: true })}
             className='form-input'
           >
+            <option value={0}>ALL</option>
             <option value={1}>TRACE</option>
             <option value={2}>DEBUG</option>
             <option value={3}>INFO</option>
@@ -101,7 +138,7 @@ const ListingTable: FC<ListingTableProps> = ({ logs }) => {
           />
         </div>
 
-        <div>
+        <div className='col-span-1'>
           <button
             type='submit'
             className='form-submit'
@@ -122,17 +159,23 @@ const ListingTable: FC<ListingTableProps> = ({ logs }) => {
           </tr>
         </thead>
         <tbody>
-          {logs ? logs.length > 0 ? logs.map((log) => (
+          {filteredLogs ? filteredLogs.length > 0 ? filteredLogs.map((log) => (
             <tr
               key={log.id}
               className='table-body-row'
             >
-              <td>{log.timestamp}</td>
+              <td>
+                {new Date(log.timestamp).toLocaleString()}
+              </td>
               <td>
                 <SeverityBadge severity={log.severity} />
               </td>
-              <td>{log.source}</td>
-              <td>{log.message.length > 30 ? `${log.message.substring(0, 30)}...` : log.message}</td>
+              <td>
+                {log.source}
+              </td>
+              <td>
+                {log.message.length > 30 ? `${log.message.substring(0, 30)}...` : log.message}
+              </td>
             </tr>
           )) : (
             <tr>
