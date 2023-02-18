@@ -2,9 +2,9 @@
 import { FC, MouseEvent } from 'react'
 
 // named imports
-import { MoonIcon, SunIcon } from '@heroicons/react/20/solid'
-import { useAppDispatch } from '../redux/hooks'
-import { toggleDarkMode } from '../redux/slices/darkModeSlice'
+import { MoonIcon, SunIcon } from '@heroicons/react/24/solid'
+import { useAppDispatch } from '../../redux/hooks'
+import { toggleDarkMode } from '../../redux/slices/darkModeSlice'
 
 interface AppBarProps {
   darkMode: boolean

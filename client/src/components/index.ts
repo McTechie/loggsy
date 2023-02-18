@@ -1,3 +1,7 @@
-export { default as AppBar } from './AppBar'
-export { default as SideBar } from './SideBar'
-export { default as Footer } from './Footer'
+// global components
+export { default as AppBar } from './global/AppBar'
+export { default as SideBar } from './global/SideBar'
+export { default as Footer } from './global/Footer'
+
+// listing view components
+export { default as ListingTable } from './listing/ListingTable'

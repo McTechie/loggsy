@@ -1,5 +1,7 @@
-// named imports
+// type imports
 import { FC } from 'react'
+
+// named imports
 import { usePathname } from 'next/navigation'
 import { PresentationChartLineIcon, PuzzlePieceIcon, QueueListIcon } from '@heroicons/react/20/solid'
 
