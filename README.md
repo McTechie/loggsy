@@ -6,16 +6,17 @@
 
 | Usage | Frontend | Backend | Database |
 | :---: | :---: | :---: | :---: |
-| Tech | Next.js (React) | Django | PostgreSQL |
-| Language | TypeScript | Python |  |
+| Framework | Next.js (React) | Django |  |
+| Language | TypeScript | Python | PostgreSQL |
 | State Management | Redux |  |  |
 | Styling | Tailwind CSS |  |  |
 | Form Validation | React Hook Form |  |  |
+| Alerts | React Hot Toast |  |  |
 | Charts | Chart.js |  |  |
 | Animations | Framer Motion |  |  |
 | Linting | ESLint | Black |  |
-| Hosting | Vercel | Railway | Railway |
 | Testing | Cypress | Unittest |  |
+| Hosting | Vercel | Railway | Railway |
 
 ---
 
@@ -24,22 +25,27 @@
 - [Setup Guide](./readme/SETUP.md)
 - [API Documentation](./readme/API.md)
 - [Database Schema](./readme/SCHEMA.md)
+- [Frontend README](./client/README.md)
+- [Backend README](./server/README.md)
 
 ---
 
-### Features
+### Key Features
 
 - [ ] Create, Read, Update and Delete Logs
-- [ ] Query Logs by specific fields
-- [ ] View aggregated Logs data
-- [ ] Visualize Log data
-- [ ] Dark Mode support
-- [ ] Download Logs as CSV
+- [x] Filter Logs by Date Range, Severity and Source
+- [x] Sort Logs by Severity and Source
+- [x] Client-side Pagination
+- [ ] Visualize aggregated log data
+- [x] Informational notifications for improved UX
+- [x] Dark Mode support
+- [ ] Download Logs as a CSV file
 
 ---
 
 ### Best Practices Followed
 
-- [ ] Conventional Commit Messages
-- [ ] Linting and Formatting Support
-- [ ] Test-Driven Approach
+- [x] Conventional Commit Messages
+- [x] Comments to help support complex code logic
+- [ ] Linting & Formatting (Frontend & Backend)
+- [ ] Unit & Integration Testing
