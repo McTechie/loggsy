@@ -10,10 +10,9 @@
 | Language | TypeScript | Python | PostgreSQL |
 | State Management | Redux |  |  |
 | Styling | Tailwind CSS |  |  |
-| Form Validation | React Hook Form |  |  |
-| Alerts | React Hot Toast |  |  |
-| Charts | Chart.js |  |  |
-| Animations | Framer Motion |  |  |
+| Form Validation | react-hook-form |  |  |
+| Alerts | react-hot-toast |  |  |
+| Charts | react-chartjs-2 |  |  |
 | Linting | ESLint | Black |  |
 | Testing | Cypress | Unittest |  |
 | Hosting | Vercel | Railway | Railway |
@@ -39,7 +38,7 @@
 - [ ] Visualize aggregated log data
 - [x] Informational notifications for improved UX
 - [x] Dark Mode support
-- [ ] Download Logs as a CSV file
+- [x] Download Logs as a CSV file
 
 ---
 
