@@ -18,3 +18,24 @@ type FilterFormData = {
   severity: number;
   source: string;
 }
+
+type TimeChartData = {
+  type: 'daily' | 'weekly' | 'monthly';
+  data: {
+    severity: 1 | 2 | 3 | 4 | 5 | 6;
+    count: number;
+  }[];
+}
+
+type AnnualChartData = {
+  sources: string[];
+  data: {
+    date: string;
+    count: number;
+  }[];
+}
+
+type SeverityChartData = {
+  severity: 1 | 2 | 3 | 4 | 5 | 6;
+  count: number;
+}

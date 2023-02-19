@@ -1,5 +1,5 @@
 // type imports
-import { FC } from 'react'
+import type { FC } from 'react'
 
 // named imports
 import { usePathname } from 'next/navigation'

@@ -1,7 +1,10 @@
+// type imports
+import type { FC } from 'react'
+
 // named imports
 import { useForm } from 'react-hook-form'
 
-const CreateLogForm = () => {
+const CreateLogForm: FC = () => {
   const { register, handleSubmit, formState: { errors } } = useForm<Log>()
 
   const submitData = (data: Log) => {

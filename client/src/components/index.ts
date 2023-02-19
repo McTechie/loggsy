@@ -8,6 +8,11 @@
 export { default as AppBar } from './global/AppBar'
 export { default as SideBar } from './global/SideBar'
 
+// dashboard view components
+export { default as TimeChart } from './dashboard/TimeChart'
+export { default as AnnualChart } from './dashboard/AnnualChart'
+export { default as SeverityChart } from './dashboard/SeverityChart'
+
 // listing view components
 export { default as Listing } from './listing/Listing'
 export { default as ModifyLogForm } from './listing/ModifyLogForm'

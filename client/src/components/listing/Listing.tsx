@@ -1,5 +1,5 @@
 // type imports
-import { FC, MouseEvent } from 'react'
+import type { FC, MouseEvent } from 'react'
 
 // named imports
 import { useState, useEffect } from 'react'

@@ -1,13 +1,16 @@
+// type imports
+import type { FC } from 'react'
+
 // named imports
-import { TrashIcon } from '@heroicons/react/24/solid'
 import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { TrashIcon } from '@heroicons/react/24/solid'
 
 interface ModifyLogFormProps {
   logData: Log
 }
 
-const ModifyLogForm = ({ logData }: ModifyLogFormProps) => {
+const ModifyLogForm: FC<ModifyLogFormProps> = ({ logData }) => {
   const { register, setValue, handleSubmit, formState: { errors, touchedFields } } = useForm<Log>()
 
   const submitData = (data: Log) => {

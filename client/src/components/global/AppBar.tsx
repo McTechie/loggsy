@@ -1,5 +1,5 @@
 // type imports
-import { FC, MouseEvent } from 'react'
+import type { FC, MouseEvent } from 'react'
 
 // named imports
 import { MoonIcon, SunIcon } from '@heroicons/react/24/solid'

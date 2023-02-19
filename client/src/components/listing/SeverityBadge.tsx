@@ -1,5 +1,5 @@
 // type imports
-import { FC } from 'react'
+import type { FC } from 'react'
 
 interface SeverityBadgeProps {
   severity: number

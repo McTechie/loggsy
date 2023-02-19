@@ -1,3 +1,6 @@
+// type imports
+import type { FC } from 'react'
+
 // named imports
 import { InformationCircleIcon, XMarkIcon } from '@heroicons/react/24/solid'
 
@@ -9,7 +12,7 @@ interface LogsInfoProps {
   id: string
 }
 
-const LogsInfo = ({ id }: LogsInfoProps) => {
+const LogsInfo: FC<LogsInfoProps> = ({ id }) => {
   return (
     <section className='max-w-screen-xl mx-auto'>
       <div className='border-b-2 pb-1 mb-2 flex justify-between'>
