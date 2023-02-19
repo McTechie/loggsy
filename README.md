@@ -21,9 +21,9 @@
 
 ### Important Links
 
-- [Setup Guide](./readme/SETUP.md)
-- [API Documentation](./readme/API.md)
-- [Database Schema](./readme/SCHEMA.md)
+- [Setup Guide](./docs/SETUP.md)
+- [API Documentation](./docs/API.md)
+- [Database Schema](./docs/SCHEMA.md)
 - [Frontend README](./client/README.md)
 - [Backend README](./server/README.md)
 
