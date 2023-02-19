@@ -145,7 +145,7 @@ const ModifyLogForm = ({ logData }: ModifyLogFormProps) => {
         <div className='flex justify-center'>
           <button
             type='submit'
-            className='form-submit'
+            className='cta-btn'
           >
             Modify Log
           </button>

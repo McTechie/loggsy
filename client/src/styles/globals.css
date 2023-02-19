@@ -34,7 +34,7 @@
     @apply outline-none ring-2 ring-rose-300 dark:ring-rose-400;
   }
 
-  .form-submit {
+  .cta-btn {
     @apply px-4 py-2 text-sm rounded-full bg-emerald-600 dark:bg-indigo-600 text-white hover:bg-emerald-700 dark:hover:bg-indigo-700;
   }
 

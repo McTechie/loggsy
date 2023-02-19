@@ -10,6 +10,7 @@ import { ArrowDownCircleIcon, ArrowUpCircleIcon, ChevronLeftIcon, ChevronRightIc
 
 // default imports
 import toast from 'react-hot-toast'
+import CsvDownloadButton from 'react-json-to-csv'
 import SeverityBadge from './SeverityBadge'
 
 interface ListingProps {
@@ -269,7 +270,7 @@ const Listing: FC<ListingProps> = ({ logs }) => {
           <div className='col-span-1'>
             <button
               type='submit'
-              className='form-submit'
+              className='cta-btn'
             >
               Apply Filter
             </button>
@@ -277,11 +278,15 @@ const Listing: FC<ListingProps> = ({ logs }) => {
         </form>
       </section>
 
-      {/* Logs Count */}
-      <section className='my-4'>
+      {/* Logs Count and Download Section */}
+      <section className='my-6 relative'>
         <p className='text-center text-xs text-gray-500 dark:text-gray-300'>
           Result: {filteredLogs.length} logs
         </p>
+        
+        <div className='absolute right-6 -top-2 w-fit cta-btn'>
+          <CsvDownloadButton data={logs} />
+        </div>
       </section>
 
       {/* Table */}

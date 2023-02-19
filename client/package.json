@@ -15,12 +15,14 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.1",
     "react-hot-toast": "^2.4.0",
+    "react-json-to-csv": "^1.2.0",
     "react-redux": "^8.0.5"
   },
   "devDependencies": {
     "@types/node": "18.11.3",
     "@types/react": "18.0.21",
     "@types/react-dom": "18.0.6",
+    "@types/react-json-to-csv": "^1.2.0",
     "autoprefixer": "^10.4.12",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",

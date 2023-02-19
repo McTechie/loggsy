@@ -106,7 +106,7 @@ const CreateLogForm = () => {
         <div className='flex justify-center'>
           <button
             type='submit'
-            className='form-submit'
+            className='cta-btn'
           >
             Create Log
           </button>
