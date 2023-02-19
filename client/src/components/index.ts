@@ -10,6 +10,7 @@ export { default as SideBar } from './global/SideBar'
 
 // listing view components
 export { default as Listing } from './listing/Listing'
+export { default as ModifyLogForm } from './listing/ModifyLogForm'
 
 // log creation view components
 export { default as CreateLogForm } from './create/CreateLogForm'

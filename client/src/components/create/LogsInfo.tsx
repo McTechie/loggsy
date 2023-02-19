@@ -23,36 +23,40 @@ const LogsInfo = ({ id }: LogsInfoProps) => {
       </div>
       
       <table className='table-fixed text-center'>
-        <tr className='info-table-header-row'>
-          <th>Severity</th>
-          <td>
-            <SeverityBadge severity={1} />
-          </td>
-          <td>
-            <SeverityBadge severity={2} />
-          </td>
-          <td>
-            <SeverityBadge severity={3} />
-          </td>
-          <td>
-            <SeverityBadge severity={4} />
-          </td>
-          <td>
-            <SeverityBadge severity={5} />
-          </td>
-          <td>
-            <SeverityBadge severity={6} />
-          </td>
-        </tr>
-        <tr className='info-table-body-row'>
-          <th>Description</th>
-          <td>A fine-grained debugging message</td>
-          <td>A debugging message</td>
-          <td>An informational message</td>
-          <td>A warning message</td>
-          <td>An error message</td>
-          <td>A fatal error message</td>
-        </tr>
+        <thead>
+          <tr className='info-table-header-row'>
+            <th>Severity</th>
+            <td>
+              <SeverityBadge severity={1} />
+            </td>
+            <td>
+              <SeverityBadge severity={2} />
+            </td>
+            <td>
+              <SeverityBadge severity={3} />
+            </td>
+            <td>
+              <SeverityBadge severity={4} />
+            </td>
+            <td>
+              <SeverityBadge severity={5} />
+            </td>
+            <td>
+              <SeverityBadge severity={6} />
+            </td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className='info-table-body-row'>
+            <th>Description</th>
+            <td>A fine-grained debugging message</td>
+            <td>A debugging message</td>
+            <td>An informational message</td>
+            <td>A warning message</td>
+            <td>An error message</td>
+            <td>A fatal error message</td>
+          </tr>
+        </tbody>
       </table>
     </section>
   )
