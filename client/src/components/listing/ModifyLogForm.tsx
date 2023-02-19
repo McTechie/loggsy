@@ -33,7 +33,7 @@ const ModifyLogForm = ({ logData }: ModifyLogFormProps) => {
     setValue('severity', logData.severity)
     setValue('source', logData.source)
     setValue('message', logData.message)
-  }, [])
+  }, [logData, setValue])
 
   return (
     <section className='max-w-screen-sm mx-auto'>

@@ -48,7 +48,7 @@ const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
         localStorage.setItem('loggsyDarkMode', JSON.stringify(false)) // save dark mode preference to local storage
       }
     }
-  }, [])
+  }, [dispatch])
 
   return (
     <div className={`${lato.variable} font-sans ${darkMode && 'dark'}`}>
