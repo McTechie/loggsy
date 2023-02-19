@@ -15,7 +15,9 @@ const AppBar: FC<AppBarProps> = ({ darkMode }) => {
 
   const handleToggle = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault() // prevent default behavior
-    dispatch(toggleDarkMode())
+
+    dispatch(toggleDarkMode()) // toggle dark mode
+    localStorage.setItem('loggsyDarkMode', JSON.stringify(!darkMode)) // save dark mode preference to local storage
   }
 
   return (

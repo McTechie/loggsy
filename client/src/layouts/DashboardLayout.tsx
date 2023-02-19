@@ -2,12 +2,14 @@
 import { FC } from 'react'
 
 // named imports
+import { useEffect } from 'react'
 import { Lato } from '@next/font/google'
+import { useAppDispatch, useAppSelector } from '../redux/hooks'
+import { setMode } from '../redux/slices/darkModeSlice'
 import { AppBar, SideBar } from '../components'
 
 // default imports
 import Head from 'next/head'
-import { useAppSelector } from '../redux/hooks'
 
 // font style for the dashboard
 const lato = Lato({
@@ -22,6 +24,31 @@ interface DashboardLayoutProps {
 
 const DashboardLayout: FC<DashboardLayoutProps> = ({ children }) => {
   const darkMode = useAppSelector(state => state.darkMode.dark)
+  const dispatch = useAppDispatch()
+
+  // Dark Mode Logic
+  useEffect(() => {
+    // check local storage for dark mode preference
+    const mode = localStorage.getItem('loggsyDarkMode')
+
+    if (mode === 'true') {
+      dispatch(setMode(true)) // set dark mode to true
+    } else if (mode === 'false') {
+      dispatch(setMode(false)) // set dark mode to false
+    } else {
+      // check user preference for dark mode
+      const userPreference = window.matchMedia('(prefers-color-scheme: dark)')
+      const prefersDarkMode = userPreference.matches
+
+      if (prefersDarkMode) {
+        dispatch(setMode(true)) // set mode to global state
+        localStorage.setItem('loggsyDarkMode', JSON.stringify(true)) // save dark mode preference to local storage
+      } else {
+        dispatch(setMode(false)) // set mode to global state
+        localStorage.setItem('loggsyDarkMode', JSON.stringify(false)) // save dark mode preference to local storage
+      }
+    }
+  }, [])
 
   return (
     <div className={`${lato.variable} font-sans ${darkMode && 'dark'}`}>

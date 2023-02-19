@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 // Define a type for the slice state
 interface DarkModeState {
@@ -18,9 +18,12 @@ export const darkModeSlice = createSlice({
     toggleDarkMode: (state) => {
       state.dark = !state.dark
     },
+    setMode: (state, action: PayloadAction<boolean>) => {
+      state.dark = action.payload
+    }
   },
 })
 
-export const { toggleDarkMode } = darkModeSlice.actions
+export const { toggleDarkMode, setMode } = darkModeSlice.actions
 
 export default darkModeSlice.reducer
