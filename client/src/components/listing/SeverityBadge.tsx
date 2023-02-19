@@ -28,9 +28,7 @@ const SeverityBadge: FC<SeverityBadgeProps> = ({ severity }) => {
   const { type, color } = getSeverityAndColor(severity)
 
   return (
-    <span
-      className={`text-xs px-2 py-1 rounded-full text-gray-700 ${color}`}
-    >
+    <span className={`text-xs px-2 py-1 rounded-full text-gray-700 ${color}`}>
       {type}
     </span>
   )

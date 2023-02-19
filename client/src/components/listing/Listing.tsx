@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Toaster } from 'react-hot-toast'
-import { ArrowDownCircleIcon, ArrowUpCircleIcon, ChevronLeftIcon, ChevronRightIcon, InformationCircleIcon } from '@heroicons/react/24/solid'
+import { ArrowDownCircleIcon, ArrowUpCircleIcon, ChevronLeftIcon, ChevronRightIcon, InformationCircleIcon, XMarkIcon } from '@heroicons/react/24/solid'
 
 // default imports
 import toast from 'react-hot-toast'
@@ -150,12 +150,18 @@ const Listing: FC<ListingProps> = ({ logs }) => {
   }
 
   useEffect(() => {
-    const infoToast = toast(() => (
+    const infoToast = toast((t) => (
       <div>
-        <p className='font-semibold border-b-2 pb-1 flex items-center space-x-1'>
-          <InformationCircleIcon className='inline-block w-5 h-5' />
-          <span>Loggsy Listings</span>
-        </p>
+        <div className='border-b-2 pb-1 mb-2 flex justify-between'>
+          <p className='font-semibold flex items-center space-x-1'>
+            <InformationCircleIcon className='inline-block w-5 h-5' />
+            <span>Loggsy Listings</span>
+          </p>
+          <button onClick={() => toast.dismiss(t.id)}>
+            <XMarkIcon className='inline-block w-5 h-5' />
+          </button>
+        </div>
+        
         <ol className='text-xs pt-2 pl-1 list-decimal'>
           <li><b>Filter logs</b> by severity, source, and date range!</li>
           <li><b>Sort logs</b> by severity and source!</li>

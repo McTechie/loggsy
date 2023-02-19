@@ -42,7 +42,11 @@ const SideBar: FC = () => {
       <div className='flex flex-col flex-1 space-y-4 mr-4 text-sm'>
         {links.map(link => (
           <Link key={link.href} href={link.href}>
-            <div className={`nav-link ${pathname === link.href && 'nav-link-active'}`}>
+            <div className={`nav-link ${
+              // To find the currently active sidebar link,
+              // check if the current route (irrespective of any sub-routes) is the same as the link href
+              (pathname?.split('/')[1] === link.href.split('/')[1]) && 'nav-link-active'
+            }`}>
               <div className='w-5 h-5'>
                 {link.icon}
               </div>
