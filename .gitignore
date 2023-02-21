@@ -1,0 +1,6 @@
+# cached files (django)
+*__pycache__*
+
+# environment files
+*.env
+*.env.local

@@ -36,21 +36,27 @@ pnpm install
 pnpm dev
 ```
 
+- [ ] Open the browser and go to `http://localhost:3000`
+
+- [ ] To stop the server, Press `Ctrl + C` in the terminal where the server is running
+
 ---
 
 ### Backend
 
-- [ ] Install virtualenv
+> **Method 1: Using a virtual environment**
+
+- [ ] Install virtualenv (Skip if you have already installed it)
 
 ```bash
-python3 -m pip install virtualenv
+pip3 install virtualenv
 ```
 
 - [ ] Create a virtual environment
 
 ```bash
 cd server
-python3 -m venv venv
+virtualenv venv
 ```
 
 - [ ] Activate the virtual environment
@@ -62,11 +68,36 @@ source venv/bin/activate
 - [ ] Install dependencies
 
 ```bash
-python3 -m pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
-- [ ] Run the development server
+- [ ] Run the Django development server
 
 ```bash
 python3 manage.py runserver
 ```
+
+- [ ] To stop the server, Press `Ctrl + C` in the terminal where the server is running
+
+- [ ] To deactivate the virtual environment, run the following command
+
+```bash
+deactivate
+```
+
+> **Method 2: Without using a virtual environment**
+
+- [ ] Install dependencies
+
+```bash
+cd server
+pip3 install -r requirements.txt
+```
+
+- [ ] Run the Django development server
+
+```bash
+python3 manage.py runserver
+```
+
+- [ ] To stop the server, Press `Ctrl + C` in the terminal where the server is running
