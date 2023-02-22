@@ -4,6 +4,7 @@ from .views import (
     CreateLog,
     LogDetail,
     SearchLogs,
+    AggregateLogs,
 )
 
 urlpatterns = [
@@ -11,4 +12,5 @@ urlpatterns = [
     path('log/', CreateLog.as_view()),
     path('log/<int:id>', LogDetail.as_view()),
     path('logs/search', SearchLogs.as_view()),
+    path('logs/aggregate', AggregateLogs.as_view()),
 ]

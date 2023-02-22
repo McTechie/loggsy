@@ -3,6 +3,7 @@ from rest_framework.response import Response
 
 from .models import Log
 from .serializer import LogSerializer
+from .utils import getOverviewData, getAnnualData, getSeverityData
 
 
 class LogListing(APIView):
@@ -85,5 +86,26 @@ class SearchLogs(APIView):
 
             serializer = LogSerializer(logs, many=True)
             return Response(serializer.data)
+        except Exception as e:
+            return Response({ 'message': str(e) })
+
+
+class AggregateLogs(APIView):
+    def get(self, request):
+        try:
+            logs = Log.objects.all()
+
+            data = {}
+            
+            # part 1: Overview Data
+            data['overview_data'] = getOverviewData(logs) # add the overview data to the data object
+
+            # part 2: Annual Data
+            data['annual_data'] = getAnnualData(logs) # add the annual data to the data object
+
+            # part 3: Severity Data
+            data['severity_data'] = getSeverityData(logs) # add the severity data to the data object
+
+            return Response(data)
         except Exception as e:
             return Response({ 'message': str(e) })
