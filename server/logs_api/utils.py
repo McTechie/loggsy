@@ -1,6 +1,6 @@
 import datetime
 
-def getLogsInRange(logs, num_of_days):
+def getLogsByNumOfDays(logs, num_of_days):
     result = []
 
     for severity in range(1, 7):
@@ -19,23 +19,23 @@ def getOverviewData(logs):
     overview_data = []
 
     # part 1.1: logs created in the last 24 hours
-    dailyData = getLogsInRange(logs, 1)
+    dailyData = getLogsByNumOfDays(logs, 1)
     
     overview_data.append({
         'type': 'daily',
         'data': dailyData
     })
 
-    # part 1.2: logs created in the last 30 days
-    monthlyData = getLogsInRange(logs, 30)
+    # part 1.2: logs created in the last 7 days
+    monthlyData = getLogsByNumOfDays(logs, 7)
 
     overview_data.append({
         'type': 'monthly',
         'data': monthlyData
     })
 
-    # part 1.3: logs created in the last 365 days
-    yearlyData = getLogsInRange(logs, 365)
+    # part 1.3: logs created in the last 30 days
+    yearlyData = getLogsByNumOfDays(logs, 30)
 
     overview_data.append({
         'type': 'yearly',
@@ -56,6 +56,7 @@ def getAnnualData(logs):
 
     for log in logs:
         logData = []
+
         logData.append({
             'date': log.timestamp.date(),
             'count': logs.filter(timestamp__date=log.timestamp.date()).count()
@@ -72,6 +73,7 @@ def getSeverityData(logs):
 
     for log in logs:
         logData = {}
+
         logData['severity'] = log.severity
         logData['count'] = logs.filter(severity=log.severity).count()
         
