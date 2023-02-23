@@ -34,8 +34,8 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'https://loggsy.vercel.app',
-    'https://loggsy-production.up.railway.app'
+    'loggsy-production.up.railway.app',
+    'loggsy.vercel.app',
 ]
 
 
