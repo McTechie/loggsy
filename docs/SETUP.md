@@ -4,20 +4,41 @@
 > 
 > I have used MacOS for the development of Loggsy, so the commands may differ for other operating systems.
 
-### Prerequisites (Exact versions used in development)
+---
 
-- [ ] Python 3.10.6
-  - [Download from here](https://www.python.org/downloads/)
-- [ ] Node.js 16.14.2
+<details>
+<summary>Prerequisites</summary>
+
+<br>
+
+### Node.js (Frontend)
+
+> I've also mentioned the Exact version used in development
+
+- [ ] Node.js v16.14.2
   - [Download from here](https://nodejs.org/en/download/)
 
+### Python (Backend)
+
+> I've also mentioned the Exact version used in development
+
+- [ ] Python v3.10.6
+  - [Download from here](https://www.python.org/downloads/)
+
+</details>
+
 ---
+
+<details>
+<summary>MacOS</summary>
+
+<br>
 
 ### Frontend
 
 - [ ] Install pnpm (Package Manager)
 
-> You can use npm or yarn as well, but I prefer to use pnpm
+> You can use `npm` or `yarn` as well, but I have used `pnpm`
 
 ```bash
 npm install -g pnpm
@@ -44,7 +65,7 @@ pnpm dev
 
 ### Backend
 
-> **Method 1: Using a virtual environment**
+> **Method 1: Using a virtual environment (Preferred)**
 
 - [ ] Install virtualenv (Skip if you have already installed it)
 
@@ -77,9 +98,11 @@ pip3 install -r requirements.txt
 python3 manage.py runserver
 ```
 
+- [ ] Open the browser and go to `http://localhost:8000` to verify that the server is running
+
 - [ ] To stop the server, Press `Ctrl + C` in the terminal where the server is running
 
-- [ ] To deactivate the virtual environment, run the following command
+- [ ] Finally, deactivate the virtual environment by running the following command
 
 ```bash
 deactivate
@@ -100,4 +123,107 @@ pip3 install -r requirements.txt
 python3 manage.py runserver
 ```
 
+- [ ] Open the browser and go to `http://localhost:8000` to verify that the server is running
+
 - [ ] To stop the server, Press `Ctrl + C` in the terminal where the server is running
+
+</details>
+
+---
+
+<details>
+<summary>Windows</summary>
+
+<br>
+
+### Frontend
+
+- [ ] Install pnpm (Package Manager)
+
+> You can use `npm` or `yarn` as well, but I have used `pnpm`
+
+```cmd
+npm install -g pnpm
+```
+
+- [ ] Install dependencies
+
+```cmd
+cd client
+pnpm install
+```
+
+- [ ] Run the development server
+
+```cmd
+pnpm dev
+```
+
+- [ ] Open the browser and go to `http://localhost:3000`
+
+- [ ] To stop the server, Press `Ctrl + C` in the terminal where the server is running
+
+---
+
+### Backend
+
+> **Method 1: Using a virtual environment (Preferred)**
+
+- [ ] Create a virtual environment
+
+```cmd
+cd server
+python -m venv venv
+```
+
+- [ ] Activate the virtual environment
+
+```cmd
+venv\Scripts\activate
+```
+
+- [ ] Install dependencies
+
+```cmd
+pip install -r requirements.txt
+```
+
+- [ ] Run the Django development server
+
+```cmd
+python manage.py runserver
+```
+
+- [ ] Open the browser and go to `http://localhost:8000` to verify that the server is running
+
+- [ ] To stop the server, Press `Ctrl + C` in the terminal where the server is running
+
+- [ ] Finally, deactivate the virtual environment by running the following command
+
+```bash
+deactivate
+```
+
+> **Method 2: Without using a virtual environment**
+
+- [ ] Install dependencies
+
+```cmd
+cd server
+pip install -r requirements.txt
+```
+
+- [ ] Run the Django development server
+
+```cmd
+python manage.py runserver
+```
+
+- [ ] Open the browser and go to `http://localhost:8000` to verify that the server is running
+
+- [ ] To stop the server, Press `Ctrl + C` in the terminal where the server is running
+
+</details>
+
+---
+

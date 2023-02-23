@@ -10,9 +10,8 @@
 | Language | TypeScript | Python | PostgreSQL |
 | State Management | Redux |  |  |
 | Styling | Tailwind CSS |  |  |
-| Form Validation | react-hook-form |  |  |
-| Alerts | react-hot-toast |  |  |
-| Charts | react-chartjs-2 |  |  |
+| Form Validation | React Hook Form |  |  |
+| Charts | Chart.js |  |  |
 | Linting | ESLint | Black |  |
 | Testing | Cypress | Unittest |  |
 | Hosting | Vercel | Railway | Railway |
