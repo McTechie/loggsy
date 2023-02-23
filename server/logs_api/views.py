@@ -169,7 +169,7 @@ class LogDetail(APIView):
 
 
 class SearchLogs(APIView):
-    def get(self, request):
+    def post(self, request):
         """
         Endpoint to search logs by any of the following parameters:
             - If the request data contains 'date_from', then filter the logs by timestamp greater than or equal to it
@@ -198,11 +198,16 @@ class SearchLogs(APIView):
             filters = {}
 
             for search_param, search_value in request.data.items():
-                if search_param == 'date_from':
+                if search_param == 'date_from' and search_value != '':
                     filters['timestamp__gte'] = search_value
-                elif search_param == 'date_to':
+                
+                if search_param == 'date_to' and search_value != '':
                     filters['timestamp__lte'] = search_value
-                else:
+                
+                if search_param == 'severity' and search_value != 0:
+                    filters[search_param] = search_value
+                
+                if search_param == 'source' and search_value != '':
                     filters[search_param] = search_value
 
             logs = Log.objects.filter(**filters)
@@ -210,7 +215,7 @@ class SearchLogs(APIView):
             serializer = LogSerializer(logs, many=True)
             return Response(serializer.data)
         except Exception as e:
-            return Response({ 'message': str(e) })
+            return Response({ 'message': str(e) }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
 class AggregateLogs(APIView):

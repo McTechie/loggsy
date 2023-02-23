@@ -2,7 +2,7 @@
 import type { FC, MouseEvent } from 'react'
 
 // named imports
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useRouter } from 'next/navigation'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Toaster } from 'react-hot-toast'
@@ -22,16 +22,22 @@ const Listing: FC<ListingProps> = ({ logs }) => {
 
   const { register, handleSubmit } = useForm<FilterFormData>() // react-hook-form
 
+  // get all the severities from the logs and avoid duplicates
+  const severities = useMemo(() => Array.from(new Set(logs.map((log) => log.severity))), [logs])
+  
+  // get all the sources from the logs and avoid duplicates
+  const sources = useMemo(() => Array.from(new Set(logs.map((log) => log.source))), [logs])
+
+  // sorting logic states
+  const [isSortedBySeverity, setIsSortedBySeverity] = useState<boolean>(false)
+  const [isSortedBySource, setIsSortedBySource] = useState<boolean>(false)
+
   // pagination logic states
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [logsPerPage, setLogsPerPage] = useState<number>(8)
 
   // filtering logic state
   const [filteredLogs, setFilteredLogs] = useState<Log[]>(logs)
-
-  // sorting logic states
-  const [isSortedBySeverity, setIsSortedBySeverity] = useState<boolean>(false)
-  const [isSortedBySource, setIsSortedBySource] = useState<boolean>(false)
 
   // sorting handler functions
   const handleSortBySeverity = () => {
@@ -45,9 +51,9 @@ const Listing: FC<ListingProps> = ({ logs }) => {
     let newlySortedLogs: Log[] = []
 
     if (isSortedBySeverity) {
-      newlySortedLogs = filteredLogs.sort((a, b) => a.severity - b.severity)
+      newlySortedLogs = filteredLogs?.sort((a, b) => a.severity - b.severity)
     } else {
-      newlySortedLogs = filteredLogs.sort((a, b) => b.severity - a.severity)
+      newlySortedLogs = filteredLogs?.sort((a, b) => b.severity - a.severity)
     }
 
     setFilteredLogs(newlySortedLogs)
@@ -65,9 +71,9 @@ const Listing: FC<ListingProps> = ({ logs }) => {
     let newlySortedLogs: Log[] = []
 
     if (isSortedBySource) {
-      newlySortedLogs = filteredLogs.sort((a, b) => a.source.localeCompare(b.source))
+      newlySortedLogs = filteredLogs?.sort((a, b) => a.source.localeCompare(b.source))
     } else {
-      newlySortedLogs = filteredLogs.sort((a, b) => b.source.localeCompare(a.source))
+      newlySortedLogs = filteredLogs?.sort((a, b) => b.source.localeCompare(a.source))
     }
 
     setFilteredLogs(newlySortedLogs)
@@ -83,14 +89,28 @@ const Listing: FC<ListingProps> = ({ logs }) => {
         setCurrentPage(currentPage => currentPage - 1)
       }
     } else {
-      if (currentPage < Math.ceil(filteredLogs.length / logsPerPage)) {
+      if (currentPage < Math.ceil(filteredLogs?.length / logsPerPage)) {
         setCurrentPage(currentPage => currentPage + 1)
       }
     }
   }
 
   // filter handler function
-  const filterData: SubmitHandler<FilterFormData> = (data) => {
+  const handleFilterLogs: SubmitHandler<FilterFormData> = async (data) => {
+    // if all the fields are empty, then return
+    if (data.fromDate === '' && data.toDate === '' && data.source === '' && data.severity === 0) {
+      setFilteredLogs(logs)
+
+      // reset pagination
+      setCurrentPage(1)
+
+      // reset sorting
+      setIsSortedBySeverity(false)
+      setIsSortedBySource(false)
+
+      return
+    }
+
     const notification = toast.loading('Filtering logs...', {
       style: {
         background: '#334155',
@@ -98,56 +118,47 @@ const Listing: FC<ListingProps> = ({ logs }) => {
       },
     })
 
-    const { fromDate, toDate, severity, source } = data
-
-    // Filtering Logic
-    // ----------------
-    // Case #1:
-    //   If the source is not empty AND
-    //   the input source does not include the log source AND
-    //   the log source does not include the input source, then set the flag to FALSE
-    // Case #2:
-    //   If the severity is not 0 AND
-    //   the input severity does not match the log severity, then set the flag to FALSE
-    // Case #3:
-    //   If the from date is not empty AND
-    //   the log timestamp is less than the from date, then set the flag to FALSE
-    // Case #4:
-    //   If the to date is not empty AND
-    //   the log timestamp is greater than the to date, then set the flag to FALSE
-
-    const newlyFilteredLogs = logs.filter(log => {
-      let flag = true
-
-      if (source && !log.source.toLowerCase().includes(source.toLowerCase()) && !source.toLowerCase().includes(log.source.toLowerCase())) {
-        flag = false
-      } else if (severity !== 0 && log.severity !== severity) {
-        flag = false
-      } else if (fromDate && log.timestamp < new Date(fromDate).getTime()) {
-        flag = false
-      } else if (toDate && log.timestamp > new Date(toDate).getTime()) {
-        flag = false
-      }
-
-      return flag
-    })
-
-    setFilteredLogs(newlyFilteredLogs)
-
-    // reset pagination
-    setCurrentPage(1)
-
-    // reset sorting
-    setIsSortedBySeverity(false)
-    setIsSortedBySource(false)
-
-    toast.dismiss(notification)
-    toast.success('Logs filtered successfully!', {
-      style: {
-        background: '#334155',
-        color: '#d1d5db',
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/logs/search`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
       },
+      body: JSON.stringify({
+        date_from: data.fromDate,
+        date_to: data.toDate,
+        source: data.source,
+        severity: data.severity,
+      }),
     })
+    
+    if (res.status === 200) {
+      const resData = await res.json()
+
+      setFilteredLogs(resData)
+
+      toast.dismiss(notification)
+      toast.success('Logs filtered successfully!', {
+        style: {
+          background: '#334155',
+          color: '#d1d5db',
+        },
+      })
+
+      // reset pagination
+      setCurrentPage(1)
+
+      // reset sorting
+      setIsSortedBySeverity(false)
+      setIsSortedBySource(false)
+    } else {
+      toast.dismiss(notification)
+      toast.error('An error occurred while filtering logs!', {
+        style: {
+          background: '#334155',
+          color: '#d1d5db',
+        },
+      })
+    }
   }
 
   // delete all logs handler function
@@ -228,7 +239,7 @@ const Listing: FC<ListingProps> = ({ logs }) => {
       {/* Filter Form */}
       <section>
         <form
-          onSubmit={handleSubmit(filterData)}
+          onSubmit={handleSubmit(handleFilterLogs)}
           className='grid grid-cols-4 items-center lg:grid-cols-9 gap-2 py-3 px-4 mt-6 rounded-full bg-emerald-400 dark:bg-indigo-400'
         >
           <div className='ml-2 space-x-2 col-span-2'>
@@ -275,13 +286,20 @@ const Listing: FC<ListingProps> = ({ logs }) => {
               {...register('severity', { valueAsNumber: true })}
               className='form-input'
             >
-              <option value={0}>ALL</option>
-              <option value={1}>TRACE</option>
-              <option value={2}>DEBUG</option>
-              <option value={3}>INFO</option>
-              <option value={4}>WARN</option>
-              <option value={5}>ERROR</option>
-              <option value={6}>FATAL</option>
+              <option value={0}>
+                ALL
+              </option>
+              {severities.map((severity) => (
+                <option key={severity} value={severity}>
+                  {severity === 1 ? 'TRACE'
+                    : severity === 2 ? 'DEBUG'
+                    : severity === 3 ? 'INFO'
+                    : severity === 4 ? 'WARN'
+                    : severity === 5 ? 'ERROR'
+                    : 'FATAL'
+                  }
+                </option>
+              ))}
             </select>
           </div>
 
@@ -292,13 +310,17 @@ const Listing: FC<ListingProps> = ({ logs }) => {
             >
               Source:
             </label>
-            <input
-              type='text'
+            <select
               id='source'
-              placeholder='Eg. Server'
               {...register('source')}
               className='form-input'
-            />
+            >
+              {sources.map((source) => (
+                <option key={source} value={source}>
+                  {source}
+                </option>
+              ))}
+            </select>
           </div>
 
           <div className='col-span-1'>
@@ -315,7 +337,7 @@ const Listing: FC<ListingProps> = ({ logs }) => {
       {/* Logs Count and Download Section */}
       <section className='my-6 relative'>
         <p className='text-center text-xs text-gray-500 dark:text-gray-300'>
-          Result: {filteredLogs.length} logs
+          Result: {filteredLogs?.length} logs
         </p>
         
         <div className='absolute right-6 -top-2 flex space-x-2'>
@@ -334,7 +356,7 @@ const Listing: FC<ListingProps> = ({ logs }) => {
       </section>
 
       {/* Table */}
-      {filteredLogs.length > 0 && (
+      {filteredLogs?.length > 0 && (
         <section>
           <table className='w-full table-fixed text-center'>
             <thead>
@@ -376,7 +398,7 @@ const Listing: FC<ListingProps> = ({ logs }) => {
               </tr>
             </thead>
             <tbody>
-              {filteredLogs.slice((currentPage - 1) * logsPerPage, currentPage * logsPerPage).map(log => (
+              {filteredLogs?.slice((currentPage - 1) * logsPerPage, currentPage * logsPerPage).map(log => (
                 <tr
                   key={log.id}
                   className='table-body-row'
@@ -402,10 +424,10 @@ const Listing: FC<ListingProps> = ({ logs }) => {
       )}
 
       {/* Pagination */}
-      {filteredLogs.length > 0 && (
+      {filteredLogs?.length > 0 && (
         <section className='mt-7'>
           <p className='text-center text-xs text-gray-500 dark:text-gray-300 mb-12'>
-            Showing page {currentPage} of {Math.ceil(filteredLogs.length / logsPerPage)}
+            Showing page {currentPage} of {Math.ceil(filteredLogs?.length / logsPerPage)}
           </p>
 
           <div className='flex items-center space-x-10 justify-center'>
