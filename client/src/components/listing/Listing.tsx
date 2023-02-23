@@ -315,6 +315,9 @@ const Listing: FC<ListingProps> = ({ logs }) => {
               {...register('source')}
               className='form-input'
             >
+              <option value=''>
+                ALL
+              </option>
               {sources.map((source) => (
                 <option key={source} value={source}>
                   {source}
