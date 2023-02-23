@@ -223,8 +223,8 @@ class AggregateLogs(APIView):
         """
         Endpoint to aggregate the logs by:
             - Overview Data: total number of logs created daily, weekly, and monthly
-            - Annual Data: total number of logs created per day in the year
-            - Severity Data: total number of logs per severity
+            - Annual Data: total number of logs created along with the date
+            - Severity Data: total number of logs per along with the severity
         
         Returns:
         --------

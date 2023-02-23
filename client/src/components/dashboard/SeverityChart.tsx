@@ -52,25 +52,6 @@ const SeverityChart: FC<SeverityChartProps> = ({ data }) => {
     }
   }), [data])
 
-  const borderColors = useMemo(() => data.map((d) => {
-    switch (d.severity) {
-      case 1:
-        return '#d1d5db'
-      case 2:
-        return '#9ca3af'
-      case 3:
-        return '#38bdf8'
-      case 4:
-        return '#fde047'
-      case 5:
-        return '#fca5a5'
-      case 6:
-        return '#f43f5e'
-      default:
-        return '#d1d5db'
-    }
-  }), [data])
-
   const values = useMemo(() => data.map((d) => d.count), [data])
 
   const chartData = {
@@ -80,11 +61,11 @@ const SeverityChart: FC<SeverityChartProps> = ({ data }) => {
         label: 'Log Count',
         data: values,
         backgroundColor: bgColors,
-        borderColor: borderColors,
-        borderWidth: 1,
+        borderColor: '#fff',
+        borderWidth: 2,
       },
     ],
-  };
+  }
 
   return (
     <div className='shadow-lg rounded-2xl p-10 pt-16 border-4 border-emerald-400 dark:border-indigo-400 bg-white dark:bg-slate-700 flex flex-col items-center justify-center relative'>

@@ -10,7 +10,7 @@ ChartJS.register(ArcElement, Tooltip, Legend)
 
 const TimeChart: FC<TimeChartData> = ({ type, data }) => {
   // extract labels from severity values passed
-  const labels = useMemo(() => data.map((d) => {
+  const labels = useMemo(() => data?.map((d) => {
     switch (d.severity) {
       case 1:
         return 'TRACE'
@@ -30,7 +30,7 @@ const TimeChart: FC<TimeChartData> = ({ type, data }) => {
   }), [data])
 
   // extract colors from severity values passed
-  const bgColors = useMemo(() => data.map((d) => {
+  const bgColors = useMemo(() => data?.map((d) => {
     switch (d.severity) {
       case 1:
         return '#d1d5db'
@@ -50,7 +50,7 @@ const TimeChart: FC<TimeChartData> = ({ type, data }) => {
   }), [data])
 
   // extract values from the data passed
-  const values = useMemo(() => data.map((d) => d.count), [data])
+  const values = useMemo(() => data?.map((d) => d.count), [data])
 
   const chartData = useMemo(() => ({
     labels,

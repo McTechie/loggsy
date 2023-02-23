@@ -28,11 +28,8 @@ type TimeChartData = {
 }
 
 type AnnualChartData = {
-  sources: string[];
-  data: {
-    date: string;
-    count: number;
-  }[];
+  date: string;
+  count: number;
 }
 
 type SeverityChartData = {

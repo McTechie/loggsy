@@ -20,6 +20,9 @@ def getOverviewData(logs):
 
     # part 1.1: logs created in the last 24 hours
     dailyData = getLogsByNumOfDays(logs, 1)
+
+    # filter data to remove logs with count of 0
+    dailyData = list(filter(lambda x: x['count'] != 0, dailyData))
     
     overview_data.append({
         'type': 'daily',
@@ -27,44 +30,42 @@ def getOverviewData(logs):
     })
 
     # part 1.2: logs created in the last 7 days
-    monthlyData = getLogsByNumOfDays(logs, 7)
+    weeklyData = getLogsByNumOfDays(logs, 7)
+
+    # filter data to remove logs with count of 0
+    weeklyData = list(filter(lambda x: x['count'] != 0, weeklyData))
 
     overview_data.append({
         'type': 'monthly',
-        'data': monthlyData
+        'data': weeklyData
     })
 
     # part 1.3: logs created in the last 30 days
-    yearlyData = getLogsByNumOfDays(logs, 30)
+    monthlyData = getLogsByNumOfDays(logs, 30)
+
+    # filter data to remove logs with count of 0
+    monthlyData = list(filter(lambda x: x['count'] != 0, monthlyData))
 
     overview_data.append({
-        'type': 'yearly',
-        'data': yearlyData
+        'type': 'weekly',
+        'data': monthlyData
     })
 
     return overview_data
 
 
 def getAnnualData(logs):
-    annual_data = {}
-
-    # part 2.1: all sources available in the DB
-    annual_data['sources'] = list(set(logs.values_list('source', flat=True)))
-
-    # part 2.2: count and date of all logs in the DB
-    annual_data['data'] = []
+    annual_data = []
 
     for log in logs:
-        logData = []
-
-        logData.append({
-            'date': log.timestamp.date(),
-            'count': logs.filter(timestamp__date=log.timestamp.date()).count()
-        })
-
-        if logData not in annual_data['data']:
-            annual_data['data'].append(logData)
+        logData = {}
+            
+        logData['date'] = log.timestamp.date()
+        logData['count'] = logs.filter(timestamp__date=log.timestamp.date()).count()
         
+        if logData not in annual_data:
+            annual_data.append(logData)
+
     return annual_data
 
 

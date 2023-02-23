@@ -13,9 +13,9 @@ const SeverityBadge: FC<SeverityBadgeProps> = ({ severity }) => {
       case 2:
         return { type: 'DEBUG', color: 'bg-gray-400 text-white' }
       case 3:
-        return { type: 'INFO', color: 'bg-green-300' }
+        return { type: 'INFO', color: 'bg-sky-300' }
       case 4:
-        return { type: 'WARN', color: 'bg-yellow-300' }
+        return { type: 'WARN', color: 'bg-amber-300' }
       case 5:
         return { type: 'ERROR', color: 'bg-red-300' }
       case 6:
