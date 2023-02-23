@@ -339,7 +339,7 @@ const Listing: FC<ListingProps> = ({ logs }) => {
                   onClick={() => router.push(`/listing/${log.id}`)}
                 >
                   <td>
-                    {new Date(log.timestamp).toUTCString()}
+                    {new Date(log.timestamp).toISOString()}
                   </td>
                   <td>
                     <SeverityBadge severity={log.severity} />

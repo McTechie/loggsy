@@ -37,17 +37,20 @@ const LogDetails: NextPage<LogDetailsPageProps> = ({ logData }) => {
 export default LogDetails
 
 export const getServerSideProps = async (context: { params: { id: string } }) => {
-  const { id } = context.params
+  // mock data
+  // const logData: Log = {
+  //   id: '1',
+  //   timestamp: 1672531200000,
+  //   severity: 1,
+  //   source: 'Server',
+  //   message: 'This is a log message',
+  // }
 
-  console.log('Fetching log data for log with id: ', id)
+  const { id } = context.params // get id from url
 
-  const logData: Log = {
-    id: '1',
-    timestamp: 1672531200000,
-    severity: 1,
-    source: 'Server',
-    message: 'This is a log message',
-  }
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/log/${id}`)
+
+  const logData = await res.json()
 
   return {
     props: {
