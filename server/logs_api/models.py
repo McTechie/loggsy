@@ -1,9 +1,10 @@
 from django.db import models
 
+
 class Log(models.Model):
     """
     Model to define the structure of the log object.
-    
+
     Fields:
         - id: unique id for the log
         - timestamp: timestamp of the log
