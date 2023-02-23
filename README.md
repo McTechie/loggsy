@@ -31,11 +31,11 @@
 
 ### Key Features
 
-- [ ] Create, Read, Update and Delete Logs
+- [x] Create, Read, Update and Delete Logs
 - [x] Filter Logs by Date Range, Severity and Source
 - [x] Sort Logs by Severity and Source
 - [x] Client-side Pagination
-- [ ] Visualize aggregated log data
+- [x] Visualize aggregated log data
 - [x] Informational notifications for improved UX
 - [x] Dark Mode support
 - [x] Download Logs as a CSV file
@@ -46,5 +46,5 @@
 
 - [x] Conventional Commit Messages
 - [x] Comments to help support complex code logic
-- [ ] Linting & Formatting (Frontend & Backend)
+- [x] Linting & Formatting (Frontend & Backend)
 - [ ] Unit & Integration Testing
