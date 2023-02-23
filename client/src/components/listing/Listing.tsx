@@ -150,6 +150,40 @@ const Listing: FC<ListingProps> = ({ logs }) => {
     })
   }
 
+  // delete all logs handler function
+  const handleDeleteAllLogs = async () => {
+    const notification = toast.loading('Deleting logs...', {
+      style: {
+        background: '#334155',
+        color: '#d1d5db',
+      },
+    })
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/logs/`, {
+      method: 'DELETE',
+    })
+
+    if (res.status === 200) {
+      toast.dismiss(notification)
+      toast.success('Logs deleted successfully!', {
+        style: {
+          background: '#334155',
+          color: '#d1d5db',
+        },
+      })
+
+      router.refresh()
+    } else {
+      toast.dismiss(notification)
+      toast.error('Something went wrong!', {
+        style: {
+          background: '#334155',
+          color: '#d1d5db',
+        },
+      })
+    }
+  }
+
   useEffect(() => {
     const infoToast = toast((t) => (
       <div>
@@ -284,8 +318,18 @@ const Listing: FC<ListingProps> = ({ logs }) => {
           Result: {filteredLogs.length} logs
         </p>
         
-        <div className='absolute right-6 -top-2 w-fit cta-btn'>
-          <CsvDownloadButton data={logs} />
+        <div className='absolute right-6 -top-2 flex space-x-2'>
+          <div className='w-fit cta-btn'>
+            <CsvDownloadButton data={logs} />
+          </div>
+
+          <button
+            type='button'
+            onClick={handleDeleteAllLogs}
+            className='cta-btn bg-rose-400 dark:bg-rose-400 hover:bg-rose-500 dark:hover:bg-rose-500'
+          >
+            Delete All Logs
+          </button>
         </div>
       </section>
 
