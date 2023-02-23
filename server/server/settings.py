@@ -31,12 +31,7 @@ SECRET_KEY = 'django-insecure-e6v4_$ql+0*i!q57a-cu7m)#x_r+z6b#a+x!qa9-h5l_9*6+6%
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    'loggsy-production.up.railway.app',
-    'loggsy.vercel.app',
-]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
