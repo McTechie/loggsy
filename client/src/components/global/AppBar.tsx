@@ -26,7 +26,11 @@ const AppBar: FC<AppBarProps> = ({ darkMode }) => {
         Loggsy
       </h1>
 
-      <button onClick={handleToggle} className='border-2 border-slate-700 dark:border-gray-100 rounded-full p-1 group'>
+      <button
+        onClick={handleToggle}
+        data-cy='dark-mode-toggle'
+        className='border-2 border-slate-700 dark:border-gray-100 rounded-full p-1 group'
+      >
         {darkMode ? (
           <SunIcon className='w-4 h-4 group-hover:rotate-[360deg] transition-all duration-300 ease-in-out' />
           ) : (

@@ -3,7 +3,7 @@ import { FC } from 'react'
 
 // named imports
 import { useEffect } from 'react'
-import { Lato } from '@next/font/google'
+import { Lato } from 'next/font/google'
 import { useAppDispatch, useAppSelector } from '../redux/hooks'
 import { setMode } from '../redux/slices/darkModeSlice'
 import { AppBar, SideBar } from '../components'

@@ -8,7 +8,6 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.16",
-    "@next/font": "^13.1.6",
     "@reduxjs/toolkit": "^1.9.2",
     "chart.js": "^4.2.1",
     "next": "latest",
@@ -26,6 +25,7 @@
     "@types/react-dom": "18.0.6",
     "@types/react-json-to-csv": "^1.2.0",
     "autoprefixer": "^10.4.12",
+    "cypress": "^12.7.0",
     "eslint": "8.34.0",
     "eslint-config-next": "13.1.6",
     "postcss": "^8.4.18",

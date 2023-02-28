@@ -1,15 +1,18 @@
 // type imports
 import type { FC } from 'react'
+import type { AppRouterInstance } from 'next/dist/shared/lib/app-router-context'
 
 // named imports
 import { useState } from 'react'
-import { useRouter } from 'next/navigation'
+
 import { useForm } from 'react-hook-form'
 import { toast } from 'react-hot-toast'
 
-const CreateLogForm: FC = () => {
-  const router = useRouter()
+interface CreateLogFormProps {
+  router: AppRouterInstance
+}
 
+const CreateLogForm: FC<CreateLogFormProps> = ({ router }) => {
   const { register, handleSubmit, formState: { errors } } = useForm<Log>()
 
   // loading state

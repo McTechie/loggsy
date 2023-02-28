@@ -3,6 +3,7 @@ import type { NextPage } from 'next'
 
 // named imports
 import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
 import { Toaster } from 'react-hot-toast'
 import { CreateLogForm, LogsInfo } from '../components'
 
@@ -10,6 +11,8 @@ import { CreateLogForm, LogsInfo } from '../components'
 import toast from 'react-hot-toast'
 
 const CreateLog: NextPage = () => {
+  const router = useRouter()
+
   useEffect(() => {
     const infoToast = toast((t) => <LogsInfo id={t.id} />, {
       position: 'bottom-right',
@@ -33,7 +36,7 @@ const CreateLog: NextPage = () => {
       <Toaster />
 
       {/* Log creation section */}
-      <CreateLogForm />
+      <CreateLogForm router={router} />
     </div>
   )
 }
