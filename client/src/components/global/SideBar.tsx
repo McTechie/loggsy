@@ -2,7 +2,7 @@
 import type { FC } from 'react'
 
 // named imports
-import { usePathname } from 'next/navigation'
+import { useRouter } from 'next/router'
 import { PresentationChartLineIcon, PuzzlePieceIcon, QueueListIcon } from '@heroicons/react/20/solid'
 
 // default imports
@@ -27,7 +27,7 @@ const links: NavLink[] = [
 ]
 
 const SideBar: FC = () => {
-  const pathname = usePathname()
+  const { pathname } = useRouter()
 
   return (
     <aside className='min-h-screen flex flex-col p-4 space-y-20'>
