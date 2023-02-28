@@ -25,6 +25,56 @@
 - [ ] Python v3.10.6
   - [Download from here](https://www.python.org/downloads/)
 
+### Clone the repository
+
+> You can also download the repository as a zip file and extract it
+
+- [ ] Clone the repository
+
+```bash
+git clone https://github.com/McTechie/loggsy/loggsy
+```
+
+### Setting up the environment variables
+
+<details>
+<summary>Frontend</summary>
+
+- [ ] Rename the `.env.example` file to  `.env.local` file in the `client` directory
+
+- [ ] Replace `<backend_url_here>` with the URL of your backend server
+
+> If you intend to run the backend server on your local machine, then use `http://localhost:8000` as the backend URL
+
+</details>
+
+<details>
+<summary>Backend</summary>
+
+- [ ] Create a `.env` file in the `server/server` directory
+
+```bash
+# For MacOS
+cd server/server
+touch .env
+
+# For Windows
+cd server\server
+type nul > .env
+```
+
+- [ ] Copy the following code and paste it in the `.env` file
+
+```env
+DATABASE_NAME=
+DATABASE_HOST=
+DATABASE_PORT=
+DATABASE_USER=
+DATABASE_PASSWORD=
+```
+
+- [ ] Replace the values with the credentials of your PostgreSQL database
+
 </details>
 
 ---

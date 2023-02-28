@@ -21,10 +21,11 @@
 ### Important Links
 
 - [Setup Guide](./docs/SETUP.md)
-- [API Documentation](./docs/API.md)
-- [Database Schema](./docs/SCHEMA.md)
 - [Frontend README](./client/README.md)
 - [Backend README](./server/README.md)
+- [API Documentation](./docs/API.md)
+- [Database Schema](./docs/SCHEMA.md)
+- [Testing Guide](./docs/TESTING.md)
 
 ---
 
@@ -46,4 +47,4 @@
 - [x] Conventional Commit Messages
 - [x] Comments to help support complex code logic
 - [x] Linting & Formatting (Frontend & Backend)
-- [ ] Unit & Integration Testing
+- [x] E2E and Component Testing (Frontend)
