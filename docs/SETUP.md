@@ -44,23 +44,23 @@ git clone https://github.com/McTechie/loggsy/loggsy
 
 - [ ] Replace `<backend_url_here>` with the URL of your backend server
 
-> If you intend to run the backend server on your local machine, then use `http://localhost:8000` as the backend URL
+> If you intend to run the backend server on your local machine, then use `http://localhost:8000/api` as the backend URL
 
 </details>
 
 <details>
 <summary>Backend</summary>
 
-- [ ] Create a `.env` file in the `server/server` directory
+- [ ] Navigate to the `server/server` directory
 
 ```bash
-# For MacOS
 cd server/server
-touch .env
+```
 
-# For Windows
-cd server\server
-type nul > .env
+- [ ] Create a `.env` file in the directory
+
+```bash
+touch .env
 ```
 
 - [ ] Copy the following code and paste it in the `.env` file
@@ -109,6 +109,10 @@ pnpm dev
 ```
 
 - [ ] Open the browser and go to `http://localhost:3000`
+
+> You may see an error in the browser, but don't worry, it will be fixed once the backend server is running.
+>
+> Simply refresh the page once the backend server is running.
 
 - [ ] To stop the server, Press `Ctrl + C` in the terminal where the server is running
 

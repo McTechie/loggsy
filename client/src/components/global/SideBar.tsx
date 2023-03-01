@@ -27,7 +27,7 @@ const links: NavLink[] = [
 ]
 
 const SideBar: FC = () => {
-  const { pathname } = useRouter()
+  const router = useRouter()
 
   return (
     <aside className='min-h-screen flex flex-col p-4 space-y-20'>
@@ -45,7 +45,7 @@ const SideBar: FC = () => {
             <div className={`nav-link ${
               // To find the currently active sidebar link,
               // check if the current route (irrespective of any sub-routes) is the same as the link href
-              (pathname?.split('/')[1] === link.href.split('/')[1]) && 'nav-link-active'
+              (router.pathname?.split('/')[1] === link.href.split('/')[1]) && 'nav-link-active'
             }`}>
               <div className='w-5 h-5'>
                 {link.icon}
