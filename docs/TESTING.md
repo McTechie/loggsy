@@ -30,4 +30,42 @@ pnpm cypress open
 
 ---
 
+<details>
+<summary>Backend</summary>
 
+<br>
+
+### Unittest
+
+- [ ] Navigate to the server directory
+
+```bash
+cd server
+```
+
+- [ ] Start the Virtual Environment
+
+```bash
+# For Mac
+source venv/bin/activate
+
+# For Windows
+venv\Scripts\activate
+```
+
+- [ ] Run the tests
+
+```bash
+# For Mac
+python3 manage.py test --keepdb
+
+# For Windows
+python manage.py test --keepdb
+
+### The --keepdb flag is used to persist the database after the tests are run
+### This is useful as for every subsequent runs, no new databases are created and destroyed
+```
+
+</details>
+
+---
