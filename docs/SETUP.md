@@ -76,6 +76,7 @@ DATABASE_PASSWORD=
 - [ ] Replace the values with the credentials of your PostgreSQL database
 
 </details>
+</details>
 
 ---
 
