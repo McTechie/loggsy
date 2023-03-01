@@ -1,12 +1,15 @@
 import { CreateLogForm } from '../../src/components'
 import { mockRouter } from '../utils/mockRouter'
 
+// NOTE: We are using the intercept command to prevent hitting the actual Backend API
+// by doing this, our tests will remain isolated and would not depend on the working of the Backend APIs
+
 describe('Log Creation Functionality', () => {
   it('creates a TRACE log', () => {
     cy.intercept(
       {
         method: 'POST',
-        url: 'https://loggsy-production.up.railway.app/api/log',
+        url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/log`,
       },
       {
         statusCode: 201,
@@ -36,7 +39,7 @@ describe('Log Creation Functionality', () => {
     cy.intercept(
       {
         method: 'POST',
-        url: 'https://loggsy-production.up.railway.app/api/log',
+        url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/log`,
       },
       {
         statusCode: 201,
@@ -66,7 +69,7 @@ describe('Log Creation Functionality', () => {
     cy.intercept(
       {
         method: 'POST',
-        url: 'https://loggsy-production.up.railway.app/api/log',
+        url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/log`,
       },
       {
         statusCode: 201,
@@ -96,7 +99,7 @@ describe('Log Creation Functionality', () => {
     cy.intercept(
       {
         method: 'POST',
-        url: 'https://loggsy-production.up.railway.app/api/log',
+        url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/log`,
       },
       {
         statusCode: 201,
@@ -126,7 +129,7 @@ describe('Log Creation Functionality', () => {
     cy.intercept(
       {
         method: 'POST',
-        url: 'https://loggsy-production.up.railway.app/api/log',
+        url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/log`,
       },
       {
         statusCode: 201,
@@ -156,7 +159,7 @@ describe('Log Creation Functionality', () => {
     cy.intercept(
       {
         method: 'POST',
-        url: 'https://loggsy-production.up.railway.app/api/log',
+        url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/log`,
       },
       {
         statusCode: 201,
