@@ -68,8 +68,7 @@ class CreateLog(APIView):
 
             if not serializer.is_valid():
                 if (
-                    "timestamp" in serializer.errors
-                    or "severity" in serializer.errors
+                    "severity" in serializer.errors
                     or "source" in serializer.errors
                     or "message" in serializer.errors
                 ):

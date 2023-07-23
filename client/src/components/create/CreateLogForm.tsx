@@ -116,25 +116,6 @@ const CreateLogForm: FC<CreateLogFormProps> = ({ router }) => {
 
         <div>
           <div className='flex justify-between items-center'>
-            <label htmlFor='timestamp' className='form-label'>
-              Timestamp of the Log:
-            </label>
-            <input
-              type='datetime-local'
-              id='timestamp'
-              className={`form-input ${errors.timestamp && 'form-input-error'}`}
-              {...register('timestamp', { required: true })}
-            />
-          </div>
-          <p className='flex justify-end pt-1'>
-            <span className='text-xs text-rose-500 dark:text-rose-400'>
-              {errors.timestamp?.type === 'required' && 'Please select a Timestamp'}
-            </span>
-          </p>
-        </div>
-
-        <div>
-          <div className='flex justify-between items-center'>
             <label htmlFor='message' className='form-label'>
               Message shown:
             </label>
