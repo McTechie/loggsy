@@ -407,8 +407,11 @@ const Listing: FC<ListingProps> = ({ logs }) => {
                   className='table-body-row'
                   onClick={() => router.push(`/listing/${log.id}`)}
                 >
-                  <td>
+                  {/* <td>
                     {new Date(log.timestamp).toISOString()}
+                  </td> */}
+                  <td>
+                    {new Date(log?.timestamp).toLocaleString() || 'N/A'}
                   </td>
                   <td>
                     <SeverityBadge severity={log.severity} />
