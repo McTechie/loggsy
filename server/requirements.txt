@@ -1,11 +1,17 @@
 asgiref==3.7.2
 black==23.3.0
+click==8.1.6
 dj-database-url==2.0.0
 Django==4.2.3
 django-cors-headers==4.2.0
 django-environ==0.10.0
 djangorestframework==3.14.0
 djangorestframework-simplejwt==5.2.2
+gunicorn==21.2.0
+mypy-extensions==1.0.0
+packaging==23.1
+pathspec==0.11.1
+platformdirs==3.9.1
 psycopg2==2.9.6
 PyJWT==2.7.0
 pytz==2023.3
