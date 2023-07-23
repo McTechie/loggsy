@@ -27,18 +27,12 @@ const ModifyLogForm: FC<ModifyLogFormProps> = ({ logData }) => {
 
     setIsUpdating(true)
 
-    // create new log object with the modified fields
-    const modifiedLog = {
-      ...data,
-      timestamp: logData.timestamp,
-    }
-
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/log/${logData.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(modifiedLog),
+      body: JSON.stringify(data),
     })
 
     const resData = await res.json()
@@ -139,19 +133,6 @@ const ModifyLogForm: FC<ModifyLogFormProps> = ({ logData }) => {
             type='text'
             id='logId'
             value={logData.id} // set value for the log id
-            disabled={true}
-            className='form-input disabled:bg-gray-400 disabled:text-white cursor-not-allowed'
-          />
-        </div>
-
-        <div className='flex justify-between items-center'>
-          <label htmlFor='timestamp' className='form-label'>
-            Timestamp of the Log:
-          </label>
-          <input
-            type='text'
-            id='timestamp'
-            value={new Date(logData.timestamp).toISOString()} // set value for the timestamp
             disabled={true}
             className='form-input disabled:bg-gray-400 disabled:text-white cursor-not-allowed'
           />
