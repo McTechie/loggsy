@@ -14,7 +14,7 @@
 | Charts | Chart.js |  |  |
 | Linting | ESLint | Black |  |
 | Testing | Cypress | Unittest |  |
-| Hosting | Vercel | Railway | Railway |
+| Hosting | Vercel | Railway | ElephantSQL |
 
 ---
 

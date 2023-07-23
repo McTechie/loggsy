@@ -16,6 +16,7 @@
 - [x] djangorestframework (Backend APIs)
 - [x] django-cors-headers (CORS)
 - [x] dj-database-url (DB connection)
+- [x] gunicon (Deployment)
 
 ### API Endpoints
 
